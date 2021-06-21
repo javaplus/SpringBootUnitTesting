@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.barry.springbootunittesting.entities.Pizza;
-import com.barry.springbootunittesting.entities.PizzaOrderRequest;
+import com.barry.springbootunittesting.entities.PizzaConstants;
 import com.barry.springbootunittesting.entities.Toppings;
 
 import org.junit.jupiter.api.Test;
@@ -25,7 +25,23 @@ public class PizzaServiceTest {
 
         double cost = pizzaService.calculatePrice(pizza);
 
-        assertEquals(5.00, cost);
+        assertEquals(PizzaConstants.BASE_PRICE, cost);
+
+    }
+
+    @Test
+    public void calculatePrice_givenOneToppingCostIsBasePricePlusToppingPrice(){
+        PizzaService pizzaService = new PizzaService();
+        
+        
+        Pizza pizza = new Pizza();
+        List<Toppings> toppingsList = new ArrayList<Toppings>();
+        toppingsList.add(Toppings.MUSH);
+        pizza.setToppings(toppingsList);
+
+        double cost = pizzaService.calculatePrice(pizza);
+
+        assertEquals(PizzaConstants.BASE_PRICE + PizzaConstants.TOPPING_PRICE, cost);
 
     }
     

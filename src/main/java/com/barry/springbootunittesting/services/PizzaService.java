@@ -2,6 +2,7 @@ package com.barry.springbootunittesting.services;
 
 import com.barry.springbootunittesting.adapters.ShippingDAO;
 import com.barry.springbootunittesting.entities.Pizza;
+import com.barry.springbootunittesting.entities.PizzaConstants;
 import com.barry.springbootunittesting.entities.PizzaOrder;
 import com.barry.springbootunittesting.entities.PizzaOrderRequest;
 
@@ -10,12 +11,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class PizzaService {
     
-    private static double BASE_PRICE = 5.00;
-    private static double TOPPING_PRICE = 2.00;
-
+   
     public double calculatePrice(Pizza pizza){
-        double totalCost = BASE_PRICE;
-        totalCost+=pizza.getToppings().size() * TOPPING_PRICE;
+        double totalCost = PizzaConstants.BASE_PRICE;
+        totalCost+=pizza.getToppings().size() * PizzaConstants.TOPPING_PRICE;
         return totalCost;
     }
 
